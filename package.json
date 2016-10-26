@@ -1,0 +1,26 @@
+{
+  "name": "detachJS",
+  "version": "1.0.0",
+  "description": "传统web项目半分离改造组件",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reamd/detachJS.git"
+  },
+  "keywords": [
+    "半分离"
+  ],
+  "author": "reamd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reamd/detachJS/issues"
+  },
+  "homepage": "https://github.com/reamd/detachJS#readme",
+  "devDependencies": {
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2"
+  }
+}
