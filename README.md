@@ -1,4 +1,4 @@
-# web应用前后端半分离重构技术
+# web前后端半分离组件 - detachJS
 
 ## 背景
 前段时间的工作中，遇到一个需求，大致内容如下：
@@ -99,14 +99,11 @@ jsp页面
 
 *注：由于js加载页面，会导致搜索引擎蜘蛛程序搜不到模板，对SEO有要求的网站应用要适当的采取此方法进行分离*
 
-## 半分离重构相关技术
+## detach组件API
 
-1. domReady
-
-2. Ajax
-
-3. 数据的缓存与处理
-
-4. SPA应用的路由
-
-5. html模板引擎
+methods     | describe                                     | options
+----------|------------------------------------------|---------------------------------------------
+`init`    | Init template  | {<br/> `name`: 'XXX', **/\* required** \*/ <br/>`container`: document.querySelector('.parent'), **/\* default: document.body** \*/<br/>`data`: {name: 'reamd',age: 18},  **/\* default: {}** \*/<br/>`tpl`: './template/tpl.html', **/\* required** \*/<br/>`controller`: function(){}, **/\* default: function(){}** \*/<br/>`onReady`: function(){} **/\* default: function(){}** \*/<br/>}
+`destroy`    | Destroy template from dom      | {`name`: 'XXX'}
+`router.push`  | According to the name show template          | {`name`: 'XXX'}
+`route.delete`  | According to the name hide template            | {`name`: 'XXX'}

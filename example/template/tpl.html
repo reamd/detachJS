@@ -1,0 +1,31 @@
+<style>
+    div {
+        background-color: #cceecc;
+    }
+</style>
+<link rel="stylesheet" href="css/demo.css">
+
+<div>
+    <h3>number 1</h3>
+    <ul id="user">
+        <li>name: {{name}}</li>
+        <li>age: {{age}}</li>
+        <li>no-exist key: {{age-temp}}</li>
+    </ul>
+</div>
+
+<div>
+    <h3>number 2</h3>
+    <ul>
+        <li>hello world</li>
+    </ul>
+</div>
+
+<script>
+    (function () {
+        console.log('bbbbb');
+        document.querySelector('#user').addEventListener('click', function (e) {
+            console.log('the text of element clicked is:', e.target.innerText);
+        });
+    })();
+</script>
