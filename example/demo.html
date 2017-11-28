@@ -7,10 +7,16 @@
           content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="author" content="reamd">
     <title>detach template</title>
+    <style>
+        .demo li{
+            margin-bottom: 20px;
+            list-style: none;
+        }
+    </style>
 </head>
 <body>
 
-<ul>
+<ul class="demo">
     <li><button id="delTpl">delete template</button></li>
     <li><button id="router">router</button></li>
     <li><button id="router_quit">quit router</button></li>
@@ -18,7 +24,7 @@
 
 <div class="parent"></div>
 
-<script src="../src/detach.js"></script>
+<script src="../dist/detach.min.js"></script>
 <script>
     (function () {
         /*set up template*/
@@ -31,7 +37,7 @@
             },
             tpl: './template/tpl.html',
             controller: function (scope) { // default nop function
-                console.log('router exec');
+                console.log('router controller exec!');
             },
             onReady: function () {
                 Detach.router.push({name: 'item'});

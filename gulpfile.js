@@ -4,11 +4,18 @@
 var gulp = require('gulp'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    notify = require('gulp-notify');
-gulp.task('uglify', function() {
-    return gulp.src('code.js')
-        .pipe(rename({suffix: '.min'}))
+    notify = require('gulp-notify'),
+    del = require('del');
+
+gulp.task('scripts', function() {
+    return gulp.src('src/detach.js')
+        .pipe(gulp.dest('dist/'))
+        .pipe(rename('detach.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/'))
-        .pipe(notify({ message: 'uglify task complete' }));
+        .pipe(notify("<%= file.relative %> uglify success!"));
 });
+gulp.task('del', function () {
+    return del.sync('dist');
+});
+gulp.task('default', ['del', 'scripts']);

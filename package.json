@@ -4,6 +4,7 @@
   "description": "传统web项目半分离改造组件",
   "main": "gulpfile.js",
   "scripts": {
+    "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +21,10 @@
   },
   "homepage": "https://github.com/reamd/detachJS#readme",
   "devDependencies": {
-    "gulp-notify": "^2.2.0",
-    "gulp-rename": "^1.2.2"
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
   }
 }
