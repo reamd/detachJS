@@ -122,3 +122,5 @@ methods     | describe                                     | options
 `destroy`    | Destroy template from dom      | {`name`: 'XXX'}
 `router.push`  | According to the name show template          | {`name`: 'XXX'}
 `route.delete`  | According to the name hide template            | {`name`: 'XXX'}
+`sub`  | subscribe messaging bus            | ['string', function]
+`pub`  | publish messaging bus            | ['name', object]

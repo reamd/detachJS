@@ -21,6 +21,7 @@
         this.cList = {}; // controller list
         this.dList = []; // dom list
         this.tList = {}; // template list
+        this.db = {}; // 存储消息总线数据
     };
     var _className = '';
     var _domClassName = '';
@@ -197,5 +198,12 @@
             }
         };
 
+    Detach.prototype.sub = function (name, cb) {
+        cb(this.db[name]);
+    };
+
+    Detach.prototype.pub = function (name, data) {
+        this.db[name] = data;
+    };
     return new Detach();
 });

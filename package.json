@@ -1,8 +1,8 @@
 {
-  "name": "detachJS",
+  "name": "detachjs",
   "version": "1.0.0",
-  "description": "传统web项目半分离改造组件",
-  "main": "gulpfile.js",
+  "description": "web项目半分离改造组件",
+  "main": "dist/detach.js",
   "scripts": {
     "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
