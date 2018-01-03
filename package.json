@@ -1,6 +1,6 @@
 {
   "name": "detachjs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "web项目半分离改造组件",
   "main": "dist/detach.js",
   "scripts": {

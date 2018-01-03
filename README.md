@@ -1,4 +1,9 @@
 # web前后端半分离组件 - detachJS
+## 0. 安装
+
+```js
+npm install detachjs
+```
 
 ## 1. 背景
 前段时间的工作中，遇到一个需求，大致内容如下：
