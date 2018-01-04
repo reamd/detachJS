@@ -199,11 +199,14 @@
         };
 
     Detach.prototype.sub = function (name, cb) {
-        cb(this.db[name]);
+        this.db[name] = cb;
     };
 
     Detach.prototype.pub = function (name, data) {
-        this.db[name] = data;
+        var cb = this.db[name];
+        if(typeof cb !== 'undefined'){
+            cb(data);
+        }
     };
     return new Detach();
 });
