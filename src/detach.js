@@ -26,6 +26,48 @@
     var _className = '';
     var _domClassName = '';
 
+    function _resolveAbsolutePath(ref, source) {
+        if(source.charAt(0) === '/') {
+            return location.protocol + '//' + location.host + source;
+        }
+
+        var reg = /^\.\//ig,
+            res = '',
+            rArr = [],
+            sArr = [],
+            resArr = [],
+            fArr = [],
+            refAbsolute = false;
+
+        if(ref.charAt(0) === '/') {
+            refAbsolute = true;
+        }
+
+        ref = ref.replace(reg, '');
+        source = source.replace(reg, '');
+
+        rArr = ref.split('/');
+        rArr.pop();
+
+        sArr = source.split('/');
+        sArr.forEach(function (item, idx) {
+            if(item === '..') {
+                rArr.pop();
+                sArr[idx] = '';
+            }
+        });
+
+        resArr = rArr.concat(sArr);
+        resArr.forEach((function (item, idx) {
+            if(item !== '') {
+                fArr.push(item);
+            }
+        }));
+
+        res = fArr.join('/').replace(/\/{2,}/ig, '/');
+        return refAbsolute? ('/' + res) : res;
+    }
+
     function _obj2Arr(obj) {
        return Array.prototype.slice.call(obj);
     }
@@ -40,12 +82,14 @@
     /*由于script无法执行，因此额外进行转换*/
     function parseScript(domArr) {
         var resArr = [];
+        var templatePath = Detach.tpl;
         domArr.forEach(function(item){
             var dom = document.createElement('script');
             var url = item.getAttribute('src');
             dom.type= 'text/javascript';
             if(url) {
-                dom.src = url;
+                // dom.src = url;
+                dom.src = _resolveAbsolutePath(templatePath, url);
                 resArr.push(dom);
             }else {
                 dom.innerHTML = item.innerHTML;
@@ -53,6 +97,14 @@
             }
         });
         return resArr;
+    }
+
+    function filterCss(linkTpl) {
+        var reg = /<link.*href=['|"]([^'"]*)['|"]/i;
+        var url = linkTpl.match(reg)[1];
+        var templatePath = Detach.tpl;
+        var hrefUrl = _resolveAbsolutePath(templatePath, url);
+        return linkTpl.replace(url, hrefUrl);
     }
 
     function ajax(url, cb) {
@@ -111,7 +163,12 @@
 
             // css标签
             fRes = res.replace(regCss, function (match, variable) {
-                cssArr.push(match);
+                var reg = /(<link[\s\S]*?\/?>)/ig;
+                var res = match;
+                if (reg.test(match)) {
+                    var res = filterCss(match);
+                }
+                cssArr.push(res);
                 return '';
             });
             // script标签
@@ -129,6 +186,7 @@
             cssDom = parseDom(cssArr.join(''));
             scriptDom = parseDom(scriptArr.join(''));
 
+            //
             // 渲染dom,css,js
             fragDom = document.createDocumentFragment();
             cssDom.forEach(function (item) {
@@ -162,6 +220,7 @@
 
     Detach.prototype.init = function (opt) {
         Detach.self = this;
+        Detach.tpl = opt.tpl;
         var sortClass = new Date().getTime();
         this.cList[opt.name] = typeof opt.controller === 'undefined'
             ? function(){}

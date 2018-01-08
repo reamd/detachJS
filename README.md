@@ -129,3 +129,6 @@ methods     | describe                                     | options
 `route.delete`  | According to the name hide template            | {`name`: 'XXX'}
 `sub`  | subscribe messaging bus            | ['string', function]
 `pub`  | publish messaging bus            | ['name', object]
+
+## 注意事项
+>tpl.html中引入的外链css和js以tpl.html所在目录为参考目录，进行相对路径的引用。
